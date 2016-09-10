@@ -11,7 +11,7 @@ This script has the following requirements:
   * multiprocessing
   * lxml
 
-You must also make a file in the root directory of your script called 'variables.py' and create a python dictionary of your cookies and headers. It should look something like this:
+You must also make a file in the root directory of your script called 'variables.py' and create a python dictionary of your cookies. It should look something like this:
 ```python
 cookies = {'_sp_id.7bc7': '06d67edb75b999999.1466999953.100.1555544393.1234573782',
            '_sp_ses.7bc7': '*',
@@ -21,22 +21,7 @@ cookies = {'_sp_id.7bc7': '06d67edb75b999999.1466999953.100.1555544393.123457378
            'i18next': 'en',
            'sessionid': 'xrxg3zofonxnfmf5gfdgv5444defa71'}
 
-headers = {
-  'Accept':'application/json, text/javascript, */*; q=0.01',
-  'Accept-Encoding':'gzip, deflate',
-  'Accept-Language':'en-US,en;q=0.8,fr;q=0.6,en-CA;q=0.4',
-  'Connection':'keep-alive',
-  'Content-Length':'63',
-  'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8',
-  'Host':'www.memrise.com',
-  'Origin':'http://www.memrise.com',
-  'Referer':'http://www.memrise.com/course/1036119/hsk-level-6/edit/database/2000662/',
-  'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36',
-  'X-CSRFToken':'mxIto89I10jvWe45lt5xBJ8xnQkWayh3',
-  'X-Requested-With':'XMLHttpRequest'}
-```
-
-If you need help finding these details, you can get this through chrome. Just go onto the first page of your course database in memrise, then on the Chrome browser, go to `More Tools` and click `Developer Tools`. A window will appear at the bottom of the screen. Click the `Network` tab on that window and then click`XHR` near the top. This is where things get a bit intimidating but just give it a shot. With that page open, add the letter 'A' to one word in your course (you can remove the change later) and then click outside of the textbox to apply the change. You will see the words 'update/' appear in the bottom window. Click on it. You'll see some information there including 'General', 'Response Headers', 'Request Headers', and 'Form Data'. You want the information that's in 'Request Headers'. Take the informaition after 'Cookie' and formation that as shown above under the 'cookies' variable as shown above. The rest of the information should be defined under the 'headers' variable as shown above.
+If you need help finding these details, you can get this through Chrome. Just log in to Memrise through the Chrome browser. With Memrise.com open and logged in, press the three dots on the right of your toolbar at the top. Go to `More Tools` and click `Developer Tools`. A window will appear at the bottom of the screen. Click the `Resources` tab on that window. On the left you'll see a folder called `Cookies`. Expand that folder by clicking the arrow to the left of the word "Resources". clicke `www.memrise.com`. Those are your cookies. Format them as shown above.
 
 ## To run the script
 type `python main.py **database_page**`, where `**database_page**` is the url of the first page after you enter your course's database

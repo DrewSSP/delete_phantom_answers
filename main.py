@@ -1,9 +1,10 @@
 import requests, sys, subprocess
 from multiprocessing import Pool
-from variables import cookies, headers
+from variables import cookies
 from lxml import html
 
 course_database_url = sys.argv[1]
+headers = {}
 headers['Referer'] = course_database_url
 headers['X-CSRFToken'] = cookies['csrftoken']
 
@@ -27,7 +28,7 @@ def get_thing_information(database_url):
 			cell_type = thing_attribute.attrib["data-cell-type"]
 			try:
 				inner_content = thing_attribute.xpath("div/div[contains(@class, 'text')]/text()")[0]
-				requests.post('http://www.memrise.com/ajax/thing/cell/update/', cookies=cookies, data={'thing_id':thing_id, 'cell_id':cell_id, 'cell_type':cell_type, 'new_val':inner_content}, headers=headers)
+				post = requests.post('http://www.memrise.com/ajax/thing/cell/update/', cookies=cookies, data={'thing_id':thing_id, 'cell_id':cell_id, 'cell_type':cell_type, 'new_val':inner_content}, headers=headers)
 			except IndexError:
 				continue
 			except Exception as e:
