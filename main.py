@@ -1,4 +1,4 @@
-import requests, sys, subprocess
+import requests, sys
 from multiprocessing import Pool
 from variables import cookies
 from lxml import html
