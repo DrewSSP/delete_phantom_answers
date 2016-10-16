@@ -29,11 +29,12 @@ def get_thing_information(database_url):
 			try:
 				inner_content = thing_attribute.xpath("div/div[contains(@class, 'text')]/text()")[0]
 				successful_attributes.append(inner_content)
-				# print('Processing ID' + thing_id + ': ' + inner_content)
-				post = requests.post('http://www.memrise.com/ajax/thing/cell/update/', cookies=cookies, data={'thing_id':thing_id, 'cell_id':cell_id, 'cell_type':cell_type, 'new_val':inner_content}, headers=headers)
+				requests.post('http://www.memrise.com/ajax/thing/cell/update/', cookies=cookies, data={'thing_id':thing_id, 'cell_id':cell_id, 'cell_type':cell_type, 'new_val':inner_content}, headers=headers)
 			except IndexError:
 				successful_attributes.append('N/A')
 				continue
+			except KeyboardInterrupt:
+				break
 			except Exception as e:
 				successful_attributes.append('FAILED')
 				print ('OOPS!! Something strange happened when processing ' + inner_content + '. Please check the course database for this word to make sure that everything looks okay. Here is the error that caused a problem:')
